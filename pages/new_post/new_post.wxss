@@ -1,0 +1,43 @@
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  justify-content: space-between;
+  padding: 20px;
+}
+.input-container {
+  margin-bottom: 20px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1); /* 透明边框避免输入时移动 */
+  padding-bottom: 20px;
+}
+input[type="text"] {
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid rgba(0, 0, 0, 0.2); /* 细微边框 */
+  border-radius: 5px;
+  width: 100%;
+  outline: none; /* 移除焦点蓝框 */
+  transition: border-color 0.3s; /* 过渡效果 */
+}
+input[type="text"]:focus {
+  border-color: #007BFF; /* 聚焦时边框颜色改变 */
+}
+.preview-image {
+  width: 100%;
+  height: auto; /* 自适应高度 */
+  max-height: 200px; /* 最大高度限制 */
+}
+button {
+  height: 50px;
+  background-color: #007BFF; /* 更现代的蓝色 */
+  color: white;
+  border-radius: 5px;
+  border: none;
+  width: 100%; /* 宽度调整为100%以适应手机屏幕 */
+  cursor: pointer; /* 鼠标变为指针 */
+  transition: background-color 0.3s; /* 按钮颜色过渡 */
+}
+button:hover {
+  background-color: #0056b3; /* 悬停时颜色加深 */
+}

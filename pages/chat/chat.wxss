@@ -1,0 +1,79 @@
+
+.back-button.data-v-0a633310 {
+  position: absolute;
+  left: 10px; /* 设置左侧的具体位置 */
+  top: 10px; /* 根据需要调整垂直位置 */
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.chat-container.data-v-0a633310 {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-top: 20px;
+}
+.chat-header.data-v-0a633310 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative; 
+  padding: 10px;
+  font-size: 18px;
+  background-color: #f3f3f3;
+}
+.message-list.data-v-0a633310 {
+  flex: 1;
+  overflow-y: scroll;
+  padding: 10px;
+  padding-bottom: 80px; /* 根据输入区的高度调整这个值 */
+}
+.my-message.data-v-0a633310, .other-message.data-v-0a633310 {
+  display: flex;
+  margin-bottom: 10px;
+}
+.my-message.data-v-0a633310 {
+  justify-content: flex-end;
+}
+.other-message.data-v-0a633310 {
+  justify-content: flex-start;
+}
+.avatar.data-v-0a633310 {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+.message-content.data-v-0a633310 {
+  max-width: 70%;
+  background-color: #f0f0f0;
+  padding: 8px;
+  border-radius: 10px;
+  margin: 5px;
+}
+.input-area.data-v-0a633310 {
+  display: flex;
+  padding: 10px;
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+  position: fixed; /* 新增固定位置属性 */
+  bottom: 0; /* 设置为屏幕底部 */
+  left: 0; /* 从左边界开始 */
+  right: 0; /* 延伸到右边界 */
+  box-sizing: border-box; /* 确保padding不会影响宽度计算 */
+}
+.input-field.data-v-0a633310 {
+  flex: 1;
+  margin-right: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  height: 40px; /* 调整高度 */
+}
+.send-button.data-v-0a633310 {
+  padding: 10px 20px;
+  background-color: #007aff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  height: 60px;
+}

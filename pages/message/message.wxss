@@ -1,0 +1,31 @@
+
+.container {
+  padding: 10px;
+}
+.chat-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  margin-right: 10px;
+}
+.chat-info {
+  flex: 1;
+}
+.name {
+  font-weight: bold;
+  font-size: 16px;
+}
+.last-message {
+  color: #666;
+  font-size: 14px;
+}
+.time {
+  color: #999;
+  font-size: 12px;
+}

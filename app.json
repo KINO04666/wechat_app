@@ -1,0 +1,44 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/message/message",
+    "pages/recommend/recommend",
+    "pages/mine/mine",
+    "pages/chat/chat",
+    "pages/friend_zone/friend_zone",
+    "pages/new_post/new_post"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/message/message",
+        "text": "消息",
+        "iconPath": "static/message.png",
+        "selectedIconPath": "static/message.png"
+      },
+      {
+        "pagePath": "pages/friend_zone/friend_zone",
+        "text": "朋友圈",
+        "iconPath": "static/puq.png",
+        "selectedIconPath": "static/puq.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "static/mine2.png",
+        "selectedIconPath": "static/mine2.png"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

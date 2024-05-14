@@ -1,0 +1,44 @@
+
+.container {
+  padding: 20px;
+}
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  margin-bottom: 20px;
+}
+.editable-info {
+  width: 100%;
+}
+.info-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.label {
+  width: 80px; /* Label宽度 */
+  font-size: 16px;
+}
+.input {
+  flex: 1;
+  height: 32px;
+  padding: 0 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+}
+.fixed-info {
+  font-size: 16px;
+  color: #333;
+}
+.posts {
+  display: flex;
+  flex-direction: column;
+}
+/* 其他样式保持不变 */
