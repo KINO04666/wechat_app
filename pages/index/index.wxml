@@ -1,0 +1,13 @@
+<view class="nav">
+  <block wx:for="{{navlist}}" wx:for-index="in">
+    <view data-name="{{item}}" class="{{in===index? 'active':''}}" bindtap="navclick" data-index="{{in}}">{{item}}</view>
+  </block>
+</view>
+
+<view class="imageBox">
+  <block wx:for="{{datalist}}" wx:key="this">
+    <view class="imgwrap">
+      <image src="{{item.photo.path}}" mode="widthFix"/>
+    </view>
+  </block>
+</view>

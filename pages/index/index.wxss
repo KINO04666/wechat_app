@@ -1,0 +1,58 @@
+page {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.nav {
+  width: 30%;
+  height: 100%;
+  background-color: rgb(226,226,226);
+  overflow: auto;
+}
+.nav view {
+  text-align: center;
+  height: 60rpx;
+  line-break: 60rpx;
+  font-size: 30rpx;
+  font: message-box;
+  font-style: normal;
+  position: relative;
+  color: grey;
+}
+.nav view.active {
+  background-color: gray;
+  color: black;
+}
+.active::after {
+  content: "";
+  position: absolute;
+  width: 10rpx;
+  height: 70%;
+  background-color: #228af4;
+  border-radius: 5rpx;
+  left: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.imageBox {
+  flex: 1;
+  background-color: white;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  /* align-content: space-around; */
+  overflow: auto;
+}
+.imgwrap {
+  width: 33vw;
+  height: 33vw;
+  overflow: hidden;
+  margin: 8rpx 0rpx;
+  border-radius: 20rpx;
+}
+.imgwrap image {
+  width: 100%;
+  display: block;
+}

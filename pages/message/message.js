@@ -5,14 +5,100 @@ const _sfc_main = {
   
   data() {
     return {
-      chats: []
+      chats: [],
+      newFriend: "",  // 用户名
+      friendRemark: "",  //备注
+      currentUserName: ""  // 当前用户的名称
     };
   },
   onShow() {
     this.loadChats();
+    this.loadCurrentUser();
   },
   methods: {
+    loadCurrentUser() {
+      const userId = wx.getStorageSync('userId');
+      db.collection('account').where({ username: userId }).get().then(res => {
+        if (res.data.length > 0) {
+          this.currentUserName = res.data[0].name;
+          wx.setStorageSync('name', this.currentUserName)
+        } else {
+          wx.showToast({
+            title: '用户信息获取失败',
+            icon: 'none'
+          });
+        }
+      }).catch(err => {
+        console.error(err);
+        wx.showToast({
+          title: '查询用户信息失败',
+          icon: 'none'
+        });
+      });
+    },
+    addFriend() {
+      if (this.newFriend.trim() === "") {
+        wx.showToast({
+          title: '请输入好友名称',
+          icon: 'none'
+        });
+        return;
+      }
+      
+      db.collection('account').where({ username: this.newFriend }).get().then(res => {
+        if (res.data.length > 0) {
+          const otherUserId = res.data[0].username;
+          const otherUserName = res.data[0].name;
+          const friendRemark = this.friendRemark.trim() !== "" ? this.friendRemark : otherUserName;
+          db.collection('chats').add({
+            data: {
+              participants: [
+                { userId: wx.getStorageSync('userId'), name: wx.getStorageSync("name") },
+                { userId: otherUserId, name: friendRemark }
+              ],
+              lastMessage: {
+                text: "",
+                timestamp: "",
+              },
+              lastUpdateTime: ""
+            }
+          }).then(() => {
+            this.loadChats();
+            this.newFriend = "";
+            this.friendRemark = "";
+            wx.showToast({
+              title: '好友添加成功',
+              icon: 'success'
+            });
+          }).catch(err => {
+            console.error(err);
+            wx.showToast({
+              title: '添加好友失败',
+              icon: 'none'
+            });
+          });
+        } else {
+          wx.showToast({
+            title: '用户不存在',
+            icon: 'none'
+          });
+        }
+      }).catch(err => {
+        console.error(err);
+        wx.showToast({
+          title: '查询用户失败',
+          icon: 'none'
+        });
+      });
+    },
     
+    onInputNewFriend(event) {
+      this.newFriend = event.detail.value;
+    },
+    
+    onInputFriendRemark(event) {
+      this.friendRemark = event.detail.value;
+    },
     loadChats() {
       const watcher = db.collection('chats')
         .where({ 'participants.userId': wx.getStorageSync('userId') })
@@ -43,20 +129,13 @@ const _sfc_main = {
             console.error('Listen failed:', err);
           }
         });
-      
-      // 在适当的时候关闭监听，例如页面卸载时
-      this.$once('hook:beforeDestroy', () => {
-        watcher.close();
-      });
     },
-    
     openChat(chat) {
       console.log(`Opening chat with ${chat.name}`);
       common_vendor.index.navigateTo({
         url: `/pages/chat/chat?chatId=${encodeURIComponent(chat.chatId)}&name=${encodeURIComponent(chat.name)}`
       });
-    }
-    
+    },
   }
 };
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -70,7 +149,12 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
         e: index,
         f: common_vendor.o(($event) => $options.openChat(chat), index)
       };
-    })
+    }),
+    b: $data.newFriend,
+    c: common_vendor.o(($event) => $data.newFriend = $event.detail.value),
+    d: $data.friendRemark,
+    e: common_vendor.o(($event) => $data.friendRemark = $event.detail.value),
+    f: common_vendor.o($options.addFriend)
   };
 }
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "C:/Users/82034/Documents/web/web_project/pages/message/message.vue"]]);

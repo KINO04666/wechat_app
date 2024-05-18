@@ -6,7 +6,9 @@
     "pages/mine/mine",
     "pages/chat/chat",
     "pages/friend_zone/friend_zone",
-    "pages/new_post/new_post"
+    "pages/new_post/new_post",
+    "pages/hot/hot",
+    "pages/index/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -27,10 +29,18 @@
         "selectedIconPath": "static/message.png"
       },
       {
-        "pagePath": "pages/friend_zone/friend_zone",
-        "text": "朋友圈",
-        "iconPath": "static/puq.png",
-        "selectedIconPath": "static/puq.png"
+        "color": "#000000",
+        "pagePath": "pages/index/index",
+        "text": "分类",
+        "selectedIconPath": "./images/分类.png",
+        "iconPath": "./images/分类.png"
+      },
+      {
+        "color": "#000000",
+        "pagePath": "pages/hot/hot",
+        "text": "热门",
+        "selectedIconPath": "./images/热门.png",
+        "iconPath": "./images/热门.png"
       },
       {
         "pagePath": "pages/mine/mine",

@@ -6,20 +6,45 @@ const _sfc_main = {
     return {
       avatarUrl: wx.getStorageSync('avatar_url') || '/static/cherry_pic.png', // 使用默认头像作为备选
       profile: {
-        name: "张三",
-        username: "zhangsan123",
-        studentId: wx.getStorageSync('userId')
+        name: wx.getStorageSync('name'),
+        studentId: wx.getStorageSync('userId'),
+        password: ""
       },
-      posts: [
-        { image: "/static/mh.jpg", text: "今天的花真美！", date: "2023-05-07" },
-        { image: "/static/bg2.jpg", text: "刚刚看到的风景！", date: "2023-05-06" }
-      ]
       // 图文内容数据未更改
     };
   },
   methods: {
     saveProfile() {
-      console.log("保存个人信息", this.profile);
+      const db = wx.cloud.database();
+      const accountCollection = db.collection('account');
+      let updateData = {
+        name: this.profile.name
+      };
+
+      if (this.profile.password) {
+        updateData.password = this.profile.password;
+      }
+
+      accountCollection.where({
+        username: this.profile.studentId
+      }).update({
+        data: updateData,
+        success: res => {
+          wx.showToast({
+            title: '更新成功',
+            icon: 'success'
+          });
+          // 更新成功后，可以选择清空输入的密码
+          this.profile.password = '';
+        },
+        fail: err => {
+          wx.showToast({
+            title: '更新失败',
+            icon: 'error'
+          });
+          console.error('更新失败', err);
+        }
+      });
     }
   }
 };
@@ -39,7 +64,9 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
         d: index,
       };
     }),
-    avatar: $data.avatarUrl
+    avatar: $data.avatarUrl,
+    password:$data.password,
+    setp:common_vendor.o(($event) => $data.profile.password = $event.detail.value),
   };
 }
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "C:/Users/82034/Documents/web/web_project/pages/mine/mine.vue"]]);

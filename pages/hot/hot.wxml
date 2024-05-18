@@ -1,0 +1,36 @@
+<view class="header">
+  <image class="logo" src="../../images/校徽.jpg"></image>
+
+  <view class="searchBox">
+    <input style="width: 448rpx; height: 80rpx; display: block; box-sizing: border-box" class="text" type="text" placeholder="热门搜索" bindinput="getword"/>
+    <view class="btn" style="position: relative; left: -1rpx; top: 0rpx" bindtap="search">
+      <image src="../../images/搜索.png"/>
+    </view>
+  </view>
+</view>
+
+<view class="main">
+  <block wx:for = "{{datalist}}" wx:key="this">
+    <view class="item">
+      <image class="image" src="{{item.photo.path}}" mode="widthFix"/>
+      <view class="title">
+        {{item.msg}}
+      </view>
+      <view class="userbox">
+        <image src="{{item.sender.avatar}}" class="userhead"/>
+        <text class="username">
+          {{item.sender.username}}
+        </text>
+      </view>
+      <view class="text">
+        有{{item.favorite_count}}位校友赞过
+      </view>
+      <view class="text">
+        发表于{{item.add_datetime}}
+      </view>
+      <view class="text">
+        TA说：{{item.album.name}}
+      </view>
+    </view>
+  </block>
+</view>

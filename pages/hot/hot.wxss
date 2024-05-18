@@ -1,0 +1,94 @@
+page {
+  height: 100%;
+}
+.header {
+  height: 100rpx;
+  background-color: whitesmok;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.header .logo{
+  width: 80rpx;
+  height: 80rpx;
+}
+.searchBox {
+  display: flex;
+}
+.searchBox .text {
+  height: 100%;
+  width: 450rpx;
+  padding-left: 50rpx;
+  border: 2rpx solid #228af4;
+  box-sizing: border-box;
+  border-right: 0;
+  border-radius: 50rpx 0rpx 0rpx 50rpx;
+}
+.searchBox .btn {
+  border-radius: 0rpx 50rpx 50rpx 0rpx;
+  width: 80rpx;
+  height: 80rpx;
+  background-color: #228af4;
+  position: relative;
+}
+.btn image {
+  position: absolute;
+  width: 45rpx;
+  height: 45rpx;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+.main {
+  background-color: whitesmoke;
+  column-count: 2;
+  padding: 20rpx 20rpx;
+  padding-top: 120rpx;
+}
+
+.item {
+  padding-bottom: 25rpx;
+  break-inside: avoid;
+}
+.item image {
+  width: 100%;
+}
+.item .title {
+  color: #000000;
+  font-size: 35rpx;
+  font-weight: bold;
+  font-style: normal;
+  margin: 20rpx 0rpx;
+}
+.item .userbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.userbox .username {
+  width: 200rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: center;
+}
+.userbox .userhead {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 30rpx;
+}
+.item .text {
+  color: #555555;
+  font-size: 25rpx;
+  font-weight: normal;
+  font-style: normal;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

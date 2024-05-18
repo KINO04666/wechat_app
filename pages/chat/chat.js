@@ -7,30 +7,29 @@ const _sfc_main = {
       chatId: "",
       chatName: "",
       newMessage: "",
-      messages: []
+      messages: [],
+      watcher: null // 添加 watcher 属性
     };
   },
   methods: {
     loadMessages() {
-      const watcher = db.collection('chats')
+      this.watcher = db.collection('chats')
         .doc(this.chatId)
         .watch({
           onChange: (snapshot) => {
-            const messages = snapshot.docChanges[0].doc.messages;
+            const message = snapshot.docChanges[0]?.doc;
+            if (message && message.messages) {
+              const messages = message.messages
             this.messages = messages.map(msg => ({
               text: msg.text,
               isMine: msg.sentBy === wx.getStorageSync('userId')
             }));
+          }
           },
           onError: (err) => {
             console.error('Failed to listen to chat messages:', err);
           }
         });
-      
-      // 在适当的时候关闭监听，例如页面卸载时
-      this.$once('hook:beforeDestroy', () => {
-        watcher.close();
-      });
     },
     sendMessage() {
       if (this.newMessage.trim() !== "") {
@@ -77,8 +76,13 @@ const _sfc_main = {
       console.error('No chatId provided');
       // 这里可以添加处理逻辑，如返回上一页或显示错误消息
     }
+  },
+  onUnload() {
+    // 页面卸载时关闭监听器
+    if (this.watcher) {
+      this.watcher.close();
+    }
   }
-  
 };
 function formatDateTime(date) {
   let month = date.getMonth() + 1;  // 月份从0开始，所以加1
